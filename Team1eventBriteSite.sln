@@ -9,13 +9,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{B3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{B87E21F6-84CF-47E1-8193-510570AE6060}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventCatalogApi", "EventCatalogApi\EventCatalogApi.csproj", "{985EC1CC-523C-4CA7-ACC7-D9C284FADB96}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{985EC1CC-523C-4CA7-ACC7-D9C284FADB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{985EC1CC-523C-4CA7-ACC7-D9C284FADB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{985EC1CC-523C-4CA7-ACC7-D9C284FADB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{985EC1CC-523C-4CA7-ACC7-D9C284FADB96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B334BFC6-8103-427A-A6F0-82E6A38CD8A5} = {71DDC283-F25A-47F4-ADD5-F3838F0E1778}
 		{B87E21F6-84CF-47E1-8193-510570AE6060} = {71DDC283-F25A-47F4-ADD5-F3838F0E1778}
+		{985EC1CC-523C-4CA7-ACC7-D9C284FADB96} = {B334BFC6-8103-427A-A6F0-82E6A38CD8A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD546226-742B-4EE7-8621-B2AE2A5497BD}
