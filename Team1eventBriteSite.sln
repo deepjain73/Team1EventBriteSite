@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71DDC283-F25A-47F4-ADD5-F3838F0E1778}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{B334BFC6-8103-427A-A6F0-82E6A38CD8A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{B87E21F6-84CF-47E1-8193-510570AE6060}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B334BFC6-8103-427A-A6F0-82E6A38CD8A5} = {71DDC283-F25A-47F4-ADD5-F3838F0E1778}
+		{B87E21F6-84CF-47E1-8193-510570AE6060} = {71DDC283-F25A-47F4-ADD5-F3838F0E1778}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD546226-742B-4EE7-8621-B2AE2A5497BD}
+	EndGlobalSection
+EndGlobal
