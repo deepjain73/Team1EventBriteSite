@@ -15,7 +15,7 @@ namespace EventCatalogApi.Data
 
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
-        public DbSet<EventItems> EventItems { get; set; }
+        public DbSet<EventItem> EventItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,7 +44,7 @@ namespace EventCatalogApi.Data
                     .HasMaxLength(100);
             });
 
-            modelBuilder.Entity<EventItems>(e =>
+            modelBuilder.Entity<EventItem>(e =>
             {
                 e.ToTable("Events");
                 e.Property(i => i.Id)
