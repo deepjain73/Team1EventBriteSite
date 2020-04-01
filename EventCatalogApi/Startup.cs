@@ -27,8 +27,7 @@ namespace EventCatalogApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<EventCatalogContext>(options =>
-            options.UseSqlServer(Configuration["ConnnectionString"]));
+            services.AddDbContext<EventCatalogContext>(options =>options.UseSqlServer(Configuration["ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

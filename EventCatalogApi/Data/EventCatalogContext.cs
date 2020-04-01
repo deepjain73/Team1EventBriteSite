@@ -21,10 +21,10 @@ namespace EventCatalogApi.Data
         {
             modelBuilder.Entity<EventCategory>(e =>
             {
-                e.ToTable("EventCatagory");
+                e.ToTable("EventCategory");
                 e.Property(c => c.Id)
                       .IsRequired()
-                      .UseHiLo("event_catagory_hilo");
+                      .UseHiLo("event_category_hilo");
 
                 e.Property(c => c.Category)
                     .IsRequired()
