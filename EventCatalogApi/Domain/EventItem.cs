@@ -13,7 +13,6 @@ namespace EventCatalogApi.Domain
 	public string Description { get; set; }
 	public string Location { get; set; }
 	public DateTime Date { get; set; }
-	public DateTime Time { get; set; }
 	public decimal Price { get; set; }
 	public string PictureUrl { get; set; }
 	public int EventCategoryId { get; set; }
