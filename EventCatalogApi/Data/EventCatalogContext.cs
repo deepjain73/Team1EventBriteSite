@@ -55,7 +55,8 @@ namespace EventCatalogApi.Data
                     .IsRequired()
                     .HasMaxLength(100);
                 e.Property(i => i.Price)
-                      .IsRequired();
+                      .IsRequired()
+                      .HasColumnType("float");
                 e.Property(i => i.Location)
                       .IsRequired()
                       .HasMaxLength(100);
