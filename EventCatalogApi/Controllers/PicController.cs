@@ -23,7 +23,7 @@ namespace EventCatalogApi.Controllers
         {
            var WebRoot= _env.WebRootPath;
            var path= Path.Combine($"{WebRoot}/Pics/", $"Event{id}.jpg");
-            var buffer = System.IO.File.ReadAllBytes(path);
+           var buffer = System.IO.File.ReadAllBytes(path);
             return File(buffer, "image/jpeg");
         }
     }
