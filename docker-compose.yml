@@ -35,5 +35,21 @@ services:
     container_name: eventssqlserver
     networks:
        - backend
+  webmvc:
+    build:
+      context: .\webmvc
+      dockerfile: Dockerfile
+    image: events/webmvc
+    container_name: eventshop
+    environment:
+      EventUrl: http://catalog
+    ports:
+      - "5300:80"
+    networks:
+      - frontend
+    depends_on:
+      - catalog
+  
+
   
 
