@@ -15,7 +15,7 @@ namespace WebMVC.Services
         private readonly IHttpClient _client;
         public EventService(IConfiguration config,IHttpClient client)
         {
-            _baseUri = $"{config["EventUrl"]}/api/event/";
+            _baseUri = $"{config["EventUrl"]}/api/eventcatalog/";
             _client = client;
         }
         public async Task<Event> GetEventItemsAsync(int page, int size)

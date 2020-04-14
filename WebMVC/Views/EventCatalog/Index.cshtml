@@ -1,0 +1,61 @@
+﻿@model WebMVC.Models.Event
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               EventName
+            </th>
+            <th>
+               Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Picture
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Data) {
+        <tr>
+                
+            
+            <td>
+                @item.EventName
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                <img src="@item.PictureUrl" />
+            </td>
+            <td>
+                @item.Location
+            </td>
+            <td>
+                @item.Date
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

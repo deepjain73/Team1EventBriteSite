@@ -6,10 +6,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["WebMVC/WebMVC.csproj", "WebMVC/"]
-RUN dotnet restore "WebMVC/WebMVC.csproj"
 COPY . .
-WORKDIR "/src/WebMVC"
+RUN dotnet restore WebMVC.csproj
 RUN dotnet build "WebMVC.csproj" -c Release -o /app/build
 
 FROM build AS publish
