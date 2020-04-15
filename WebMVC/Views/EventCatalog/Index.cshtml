@@ -58,7 +58,7 @@
         <section class="esh-catalog-filters">
             <div class="container">
                 <form asp-action="Index" asp-controller="EventCatalog" method="post">
-                    <label class="esh-catalog-label" data-title="brand">
+                    <label class="esh-catalog-label" data-title="category">
                         <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
                     </label>
                     <label class="esh-catalog-label" data-title="type">
