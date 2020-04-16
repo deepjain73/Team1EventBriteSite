@@ -12,6 +12,14 @@ namespace EventCatalogApi.Migrations
                 incrementBy: 10);
 
             migrationBuilder.CreateSequence(
+                name: "event_location_hilo",
+                incrementBy: 10);
+
+            migrationBuilder.CreateSequence(
+                name: "event_price_hilo",
+                incrementBy: 10);
+
+            migrationBuilder.CreateSequence(
                 name: "event_type_hilo",
                 incrementBy: 10);
 
@@ -29,6 +37,30 @@ namespace EventCatalogApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventCategory", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventLocations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    Location = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventLocations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventPrices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    eventPrice = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventPrices", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,12 +82,14 @@ namespace EventCatalogApi.Migrations
                     Id = table.Column<int>(nullable: false),
                     EventName = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Location = table.Column<string>(maxLength: 100, nullable: false),
+                    Venue = table.Column<string>(maxLength: 100, nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     PictureUrl = table.Column<string>(nullable: true),
                     EventCategoryId = table.Column<int>(nullable: false),
-                    EventTypeId = table.Column<int>(nullable: false)
+                    EventTypeId = table.Column<int>(nullable: false),
+                    EventLocationId = table.Column<int>(nullable: false),
+                    EventPriceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,6 +98,18 @@ namespace EventCatalogApi.Migrations
                         name: "FK_Events_EventCategory_EventCategoryId",
                         column: x => x.EventCategoryId,
                         principalTable: "EventCategory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Events_EventLocations_EventLocationId",
+                        column: x => x.EventLocationId,
+                        principalTable: "EventLocations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Events_EventPrices_EventPriceId",
+                        column: x => x.EventPriceId,
+                        principalTable: "EventPrices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -80,6 +126,16 @@ namespace EventCatalogApi.Migrations
                 column: "EventCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_EventLocationId",
+                table: "Events",
+                column: "EventLocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Events_EventPriceId",
+                table: "Events",
+                column: "EventPriceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Events_EventTypeId",
                 table: "Events",
                 column: "EventTypeId");
@@ -94,10 +150,22 @@ namespace EventCatalogApi.Migrations
                 name: "EventCategory");
 
             migrationBuilder.DropTable(
+                name: "EventLocations");
+
+            migrationBuilder.DropTable(
+                name: "EventPrices");
+
+            migrationBuilder.DropTable(
                 name: "EventTypes");
 
             migrationBuilder.DropSequence(
                 name: "event_category_hilo");
+
+            migrationBuilder.DropSequence(
+                name: "event_location_hilo");
+
+            migrationBuilder.DropSequence(
+                name: "event_price_hilo");
 
             migrationBuilder.DropSequence(
                 name: "event_type_hilo");
