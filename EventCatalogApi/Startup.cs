@@ -32,7 +32,8 @@ namespace EventCatalogApi
             var user = Configuration["DatabaseUser"];
             var password = Configuration["DatabasePassword"];
             var connectionString = $"Server={server};Database={database};User Id={user};Password={password}";
-            services.AddDbContext<EventCatalogContext>(options =>options.UseSqlServer(connectionString));
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

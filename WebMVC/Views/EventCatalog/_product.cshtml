@@ -11,8 +11,8 @@
         <div class="esh-catalog-name">
             <span>@Model.EventName</span>
         </div>
-        <div class="esh-catalog-location">
-            <span>@Model.Location</span>
+        <div class="esh-catalog-venue">
+            <span>@Model.Venue</span>
         </div>
         <div class="esh-catalog-price">
             <span>@Model.Price.ToString("N2")</span>
@@ -28,7 +28,7 @@
         <input type="hidden" asp-for="@Model.EventName" name="name" />
         <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
         <input type="hidden" asp-for="@Model.Price" name="price" />
-        <input type="hidden" asp-for="@Model.Location" name="location" />
+        <input type="hidden" asp-for="@Model.Venue" name="location" />
         <input type="hidden" asp-for="@Model.Date" name="date" />
 
     </form>

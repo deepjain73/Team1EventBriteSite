@@ -16,6 +16,8 @@ namespace EventCatalogApi.Data
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<EventItem> EventItems { get; set; }
+        public DbSet<EventLocation> EventLocations { get; set; }
+        public DbSet<EventPrice> EventPrices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,6 +46,30 @@ namespace EventCatalogApi.Data
                     .HasMaxLength(100);
             });
 
+            modelBuilder.Entity<EventLocation>(e =>
+            {
+                e.ToTable("EventLocations");
+                e.Property(l => l.Id)
+                      .IsRequired()
+                      .UseHiLo("event_location_hilo");
+
+                e.Property(l => l.Location)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<EventPrice>(e =>
+            {
+                e.ToTable("EventPrices");
+                e.Property(p => p.Id)
+                      .IsRequired()
+                      .UseHiLo("event_price_hilo");
+
+                e.Property(p => p.eventPrice)
+                    .IsRequired()
+                    .HasColumnType("float");
+            });
+
             modelBuilder.Entity<EventItem>(e =>
             {
                 e.ToTable("Events");
@@ -57,11 +83,11 @@ namespace EventCatalogApi.Data
                 e.Property(i => i.Price)
                       .IsRequired()
                       .HasColumnType("float");
-                e.Property(i => i.Location)
-                      .IsRequired()
-                      .HasMaxLength(100);
-                e.Property(i => i.Date)
+               e.Property(i => i.Date)
                        .IsRequired();
+                e.Property(i => i.Venue)
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                 e.HasOne(i => i.EventCategory)
                        .WithMany()
@@ -70,7 +96,16 @@ namespace EventCatalogApi.Data
                 e.HasOne(i => i.EventType)
                         .WithMany()
                         .HasForeignKey(i => i.EventTypeId);
+
+                e.HasOne(i => i.EventLocation)
+                        .WithMany()
+                        .HasForeignKey(i => i.EventLocationId);
+
+                e.HasOne(i => i.EventPrice)
+                       .WithMany()
+                       .HasForeignKey(i => i.EventPriceId);
             });
+
         }
     }
 }
