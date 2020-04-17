@@ -24,6 +24,7 @@ namespace WebMVC.Services
         public async Task<Event> GetEventItemsAsync(int page, int size,int? type,int? category, int? location, int? price)
         {
             var eventItemsUri= ApiPaths.Event.GetAllEventItems(_baseUri,page,size,type,category,location,price);
+            
             var dataString=await _client.GetStringAsync(eventItemsUri);
             return JsonConvert.DeserializeObject<Event>(dataString);
         }

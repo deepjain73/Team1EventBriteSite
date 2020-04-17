@@ -14,10 +14,10 @@ namespace WebMVC.Infrastructure
                 var filterQs = string.Empty;
                 if(type.HasValue || category.HasValue || location.HasValue || price.HasValue)
                 {
-                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "null";
-                    var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
-                    var locationQs = (location.HasValue) ? location.Value.ToString() : "null";
-                    var priceQs = (price.HasValue) ? price.Value.ToString() : "null";
+                    var categoryQs = (category.HasValue) ? category.Value.ToString() : "0";
+                    var typeQs = (type.HasValue) ? type.Value.ToString() : "0";
+                    var locationQs = (location.HasValue) ? location.Value.ToString() : "0";
+                    var priceQs = (price.HasValue) ? price.Value.ToString() : "0";
 
                     filterQs = $"/type/{typeQs}/category/{categoryQs}/location/{locationQs}/price/{priceQs}";
                 }

@@ -47,32 +47,34 @@ namespace EventCatalogApi.Controllers
         }
 
         [HttpGet]
-        [Route("[action]/type/{eventTypeId}/category/{eventCategoryId}/location/{eventLocationId}/price{eventPriceId}")]
+        [Route("[action]/type/{eventTypeId}/category/{eventCategoryId}/location/{eventLocationId}/price/{eventPriceId}")]
         public async Task<IActionResult> Items(
-            int? eventTypeId,
-            int? eventcategoryId,
-            int? eventLocationId,
-            int? eventPriceId,
+            int eventTypeId,
+            int eventcategoryId,
+            int eventLocationId,
+            int eventPriceId,
             [FromQuery]int pageIndex=0,
             [FromQuery]int pageSize=6)
         {
             var root = (IQueryable<EventItem>)_context.EventItems;
-            if(eventTypeId.HasValue)
+            if(eventTypeId > 0)
             {
                 root = root.Where(e => e.EventTypeId == eventTypeId);
             }
-            if (eventcategoryId.HasValue)
+            if (eventcategoryId >0)
             {
                 root = root.Where(e => e.EventCategoryId == eventcategoryId);
             }
-            if (eventLocationId.HasValue)
+            if (eventLocationId > 0)
             {
                 root = root.Where(e => e.EventLocationId == eventLocationId);
             }
-            if (eventPriceId.HasValue)
+            if (eventPriceId > 0)
             {
                 root = root.Where(e => e.EventPriceId == eventPriceId);
             }
+
+
             var itemsCount = await root.LongCountAsync();
             var items = await root
                         .OrderBy(e => e.EventName)
