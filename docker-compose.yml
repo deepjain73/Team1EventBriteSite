@@ -37,7 +37,7 @@ services:
        - backend
   webmvc:
     build:
-      context: .\webmvc
+      context: .\WebMVC
       dockerfile: Dockerfile
     image: events/webmvc
     container_name: eventshop

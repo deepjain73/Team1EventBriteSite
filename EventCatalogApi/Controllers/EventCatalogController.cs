@@ -47,21 +47,31 @@ namespace EventCatalogApi.Controllers
         }
 
         [HttpGet]
-        [Route("[action]/type/{eventTypeId}/category/{eventCategoryId}")]
+        [Route("[action]/type/{eventTypeId}/category/{eventCategoryId}/location/{eventLocationId}/price{eventPriceId}")]
         public async Task<IActionResult> Items(
-            int eventTypeId,
-            int eventcategoryId,
+            int? eventTypeId,
+            int? eventcategoryId,
+            int? eventLocationId,
+            int? eventPriceId,
             [FromQuery]int pageIndex=0,
-            [FromQuery]int pageSize=0)
+            [FromQuery]int pageSize=6)
         {
             var root = (IQueryable<EventItem>)_context.EventItems;
-            if(eventTypeId > 0)
+            if(eventTypeId.HasValue)
             {
                 root = root.Where(e => e.EventTypeId == eventTypeId);
             }
-            if (eventcategoryId > 0)
+            if (eventcategoryId.HasValue)
             {
                 root = root.Where(e => e.EventCategoryId == eventcategoryId);
+            }
+            if (eventLocationId.HasValue)
+            {
+                root = root.Where(e => e.EventLocationId == eventLocationId);
+            }
+            if (eventPriceId.HasValue)
+            {
+                root = root.Where(e => e.EventPriceId == eventPriceId);
             }
             var itemsCount = await root.LongCountAsync();
             var items = await root
@@ -106,5 +116,22 @@ namespace EventCatalogApi.Controllers
             var items = await _context.EventTypes.ToListAsync();
             return Ok(items);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> EventLocations()
+        {
+            var items = await _context.EventLocations.ToListAsync();
+            return Ok(items);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> EventPrices()
+        {
+            var items = await _context.EventPrices.ToListAsync();
+            return Ok(items);
+        }
+
     }
 }
