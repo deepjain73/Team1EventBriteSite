@@ -19,13 +19,12 @@ namespace WebMVC.Services
         {
             _baseUri = $"{config["EventUrl"]}/api/eventcatalog/";
             _client = client;
-        }
+        }       
 
-       
-
-        public async Task<Event> GetEventItemsAsync(int page, int size,int? type,int? category)
+        public async Task<Event> GetEventItemsAsync(int page, int size,int? type,int? category, int? location, int? price)
         {
-            var eventItemsUri= ApiPaths.Event.GetAllEventItems(_baseUri,page,size,type,category);
+            var eventItemsUri= ApiPaths.Event.GetAllEventItems(_baseUri,page,size,type,category,location,price);
+            
             var dataString=await _client.GetStringAsync(eventItemsUri);
             return JsonConvert.DeserializeObject<Event>(dataString);
         }
@@ -76,6 +75,60 @@ namespace WebMVC.Services
                     {
                         Value = type.Value<string>("id"),
                         Text=type.Value<string>("type")
+                    });
+            }
+            return items;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetLocationsAsync()
+        {
+            var typeUri = ApiPaths.Event.GetAllLocations(_baseUri);
+            var dataString = await _client.GetStringAsync(typeUri);
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text="All",
+                    Value=null,
+                    Selected=true
+                }
+            };
+            var types = JArray.Parse(dataString);
+            foreach (var type in types)
+            {
+                items.Add(
+                    new SelectListItem
+                    {
+                        Value = type.Value<string>("id"),
+                        Text = type.Value<string>("location")
+                    });
+            }
+            return items;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetPricesAsync()
+        {
+            var typeUri = ApiPaths.Event.GetAllPrices(_baseUri);
+            var dataString = await _client.GetStringAsync(typeUri);
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text="All",
+                    Value=null,
+                    Selected=true
+                }
+            };
+            var types = JArray.Parse(dataString);
+            foreach (var type in types)
+            {
+
+                string output = type.Value<string>("eventPrice");
+                items.Add(
+                    new SelectListItem
+                    {
+                        Value = type.Value<string>("id"),
+                        Text = output
                     });
             }
             return items;
