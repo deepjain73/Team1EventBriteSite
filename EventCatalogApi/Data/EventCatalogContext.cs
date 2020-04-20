@@ -67,7 +67,7 @@ namespace EventCatalogApi.Data
 
                 e.Property(p => p.eventPrice)
                     .IsRequired()
-                    .HasColumnType("float");
+                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<EventItem>(e =>

@@ -56,7 +56,7 @@ namespace EventCatalogApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
-                    eventPrice = table.Column<double>(type: "float", nullable: false)
+                    eventPrice = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

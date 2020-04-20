@@ -123,8 +123,10 @@ namespace EventCatalogApi.Migrations
                         .HasAnnotation("SqlServer:HiLoSequenceName", "event_price_hilo")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
-                    b.Property<double>("eventPrice")
-                        .HasColumnType("float");
+                    b.Property<string>("eventPrice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
