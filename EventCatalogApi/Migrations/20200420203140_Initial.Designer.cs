@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventCatalogApi.Migrations
 {
     [DbContext(typeof(EventCatalogContext))]
-    [Migration("20200416165555_Initial")]
+    [Migration("20200420203140_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,8 +125,10 @@ namespace EventCatalogApi.Migrations
                         .HasAnnotation("SqlServer:HiLoSequenceName", "event_price_hilo")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
-                    b.Property<double>("eventPrice")
-                        .HasColumnType("float");
+                    b.Property<string>("eventPrice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
