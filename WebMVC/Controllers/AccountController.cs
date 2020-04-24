@@ -39,7 +39,7 @@ namespace WebMVC.Controllers
             }
             // "Catalog" because UrlHelper doesn't support nameof() for controllers
             // https://github.com/aspnet/Mvc/issues/5853
-            return RedirectToAction(nameof(EventCatalogController.About), "Catalog");
+            return RedirectToAction(nameof(EventCatalogController.About), "EventCatalog");
         }
 
         //public async Task<IActionResult> Signout()
@@ -62,7 +62,7 @@ namespace WebMVC.Controllers
 
             ////// "Catalog" because UrlHelper doesn't support nameof() for controllers
             ////// https://github.com/aspnet/Mvc/issues/5853
-            var homeUrl = Url.Action(nameof(EventCatalogController.Index), "Catalog");
+            var homeUrl = Url.Action(nameof(EventCatalogController.Index), "EventCatalog");
             return new SignOutResult(OpenIdConnectDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = homeUrl });
         }
