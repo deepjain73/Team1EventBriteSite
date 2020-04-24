@@ -35,6 +35,29 @@ services:
     container_name: eventssqlserver
     networks:
        - backend
+
+  tokenserver:
+    build:
+      context: .\TokenServiceApi
+      dockerfile: Dockerfile
+    image: event/tokenapi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MvcClient: http://localhost:5300
+    ports:
+      - "6750:80"
+    container_name: eventtokenserviceapi
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mssqlserver
+
   webmvc:
     build:
       context: .\WebMVC
@@ -42,14 +65,13 @@ services:
     image: events/webmvc
     container_name: eventshop
     environment:
+      ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
+      IdentityUrl: http://192.168.0.14:6750
+      CallBackUrl: http://localhost:5300
     ports:
       - "5300:80"
     networks:
       - frontend
     depends_on:
       - catalog
-  
-
-  
-
