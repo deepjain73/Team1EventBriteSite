@@ -67,7 +67,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
-      IdentityUrl: http://192.168.0.14:6750
+      IdentityUrl: http://192.168.86.42:6750
       CallBackUrl: http://localhost:5300
     ports:
       - "5300:80"
