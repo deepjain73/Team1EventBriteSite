@@ -13,8 +13,13 @@
 }
 
 .esh-app-footer-text {
-    color: #83D01B;
-    line-height: 50px;
-    text-align: right;
+    position: fixed;
+    
+    bottom: 0px;
+    height: 30px;
     width: 100%;
+    background: #999;
+    text-align: center;
 }
+    
+   

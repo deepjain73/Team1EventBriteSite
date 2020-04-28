@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace EventCatalogApi
 {
@@ -32,7 +33,19 @@ namespace EventCatalogApi
             var user = Configuration["DatabaseUser"];
             var password = Configuration["DatabasePassword"];
             var connectionString = $"Server={server};Database={database};User Id={user};Password={password}";
-            services.AddDbContext<EventCatalogContext>(options =>options.UseSqlServer(connectionString));
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
+            //services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+
+            services.AddSwaggerGen(options =>
+                {                    
+                    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                    {
+                        Title = "Team1EventBriteSite - Event Catalog Api",
+                        Version = "v1",
+                        Description = "Event catalog microservice"
+                        //TermsOfService
+                    });
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +59,11 @@ namespace EventCatalogApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSwagger()
+                .UseSwaggerUI(e =>
+                {
+                    e.SwaggerEndpoint("/swagger/v1/swagger.json", "EventCatalogApi v1");
+                });
 
             app.UseEndpoints(endpoints =>
             {

@@ -31,7 +31,7 @@ namespace EventCatalogApi.Controllers
         {
             var itemsCount = await _context.EventItems.LongCountAsync();
             var items = await _context.EventItems
-                .OrderBy(e=>e.Id)
+                .OrderBy(e=>e.EventName)
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
