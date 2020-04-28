@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IdentityModel.Tokens.Jwt;
 
 
 namespace CartApi
@@ -76,6 +77,7 @@ namespace CartApi
 
         private void ConfigureAuthService(IServiceCollection services)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             var identityUrl = Configuration["IdentityUrl"];
             services.AddAuthentication(options =>
             {
