@@ -31,7 +31,7 @@ namespace CartApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post(Cart value)
+        public async Task<IActionResult> Post([FromBody]Cart value)
         {
             var basket = await _repository.UpdateCartAsync(value);
             return Ok(basket);

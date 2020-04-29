@@ -60,7 +60,7 @@ namespace CartApi
                     {
                         Implicit = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri($"{Configuration["IdentityUrl"]}/connect/authroize"),
+                            AuthorizationUrl = new Uri($"{Configuration["IdentityUrl"]}/connect/authorize"),
                             TokenUrl = new Uri($"{Configuration["IdentityUrl"]}/connect/token"),
                             Scopes = new Dictionary<string, string>
                         {
