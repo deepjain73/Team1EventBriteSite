@@ -12,10 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using WebMvc.Models;
-using WebMvc.Services;
-using WebMVC.Infrastructure;
+using WebMVC.Models;
 using WebMVC.Services;
+using WebMVC.Infrastructure;
+
 
 
 namespace WebMVC

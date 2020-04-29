@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebMvc.ViewModels
+namespace WebMVC.ViewModels
 {
     public class Header
     {

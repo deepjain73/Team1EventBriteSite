@@ -1,12 +1,12 @@
-﻿using WebMvc.Models;
-using WebMvc.Models.CartModels;
+﻿using WebMVC.Models;
+using WebMVC.Models.CartModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//sing WebMvc.Models.OrderModels;
+//using WebMVC.Models.OrderModels;
 
-namespace WebMvc.Services
+namespace WebMVC.Services
 {
     public interface ICartService
     {

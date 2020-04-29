@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Diagnostics;
-using WebMvc.Services;
-using WebMvc.Models;
-using WebMvc.Models.CartModels;
+using WebMVC.Services;
+using WebMVC.Models;
+using WebMVC.Models.CartModels;
 using Polly.CircuitBreaker;
 using WebMVC.Services;
 using WebMVC.Models;
 
-namespace WebMvc.Controllers
+namespace WebMVC.Controllers
 {
     [Authorize]
     public class CartController : Controller
@@ -78,7 +78,7 @@ namespace WebMvc.Controllers
                     };
                     await _cartService.AddItemToCart(user, product);
                 }
-                return RedirectToAction("Index", "Catalog");
+                return RedirectToAction("Index", "EventCatalog");
             }
             catch (BrokenCircuitException)
             {

@@ -6,15 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebMvc.Models;
-using WebMvc.Models.CartModels;
-using WebMvc.Services;
+using WebMVC.Models;
+using WebMVC.Models.CartModels;
+using WebMVC.Services;
 using WebMVC.Infrastructure;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
 using Newtonsoft.Json.Linq;
-using WebMvc;
-//using WebMvc.Models.OrderModels
+using WebMVC;
+//using WebMVC.Models.OrderModels
 
 
 
