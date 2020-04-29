@@ -20,14 +20,14 @@ namespace WebMvc.Controllers
     {
 
         private readonly ICartService _cartService;
-        private readonly IEventService _catalogService;
+        private readonly IEventService _eventService;
         private readonly IIdentityService<ApplicationUser> _identityService;
 
-        public CartController(IIdentityService<ApplicationUser> identityService, ICartService cartService, IEventService catalogService)
+        public CartController(IIdentityService<ApplicationUser> identityService, ICartService cartService, IEventService eventService)
         {
             _identityService = identityService;
             _cartService = cartService;
-            _catalogService = catalogService;
+            _eventService = eventService;
         }
         public IActionResult Index()
         {
