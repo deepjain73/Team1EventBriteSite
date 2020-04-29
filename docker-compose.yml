@@ -14,7 +14,7 @@ services:
       DatabaseServer: mssqlserver
       DatabaseName: EventDb
       DatabaseUser: sa
-      DatabasePassword: EventApi(!)
+      DatabasePassword: ProductApi(!)
       ExternalEventCatalogBaseUrl: http://localhost:7100
     ports:
       - "7100:80"
@@ -31,7 +31,8 @@ services:
       dockerfile: Dockerfile
     image: events/cartapi
     environment:
-      IdentityUrl: http://192.168.0.14:6750
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.0.110:6750
       ConnectionString: basket.data
     ports:
       - "6900:80"
@@ -47,7 +48,7 @@ services:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
        ACCEPT_EULA: Y
-       SA_PASSWORD: EventApi(!)
+       SA_PASSWORD: ProductApi(!)
     ports:
        - "1450:1433"
     container_name: eventssqlserver
@@ -67,6 +68,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       MvcClient: http://localhost:5300
+      BasketApiClient: https://localhost:6900
     ports:
       - "6750:80"
     container_name: eventtokenserviceapi
@@ -85,14 +87,17 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
-      IdentityUrl: http://192.168.0.14:6750
+      IdentityUrl: http://192.168.0.110:6750
       CallBackUrl: http://localhost:5300
+      CartUrl: http://cart
     ports:
       - "5300:80"
     networks:
       - frontend
     depends_on:
       - catalog
+      - cart
+      - tokenserver
 
   basket.data:
     image: redis
