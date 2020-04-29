@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Polly.CircuitBreaker;
-using WebMvc.Models;
+using WebMVC.Models;
 
-using WebMvc.Services;
-using WebMvc.ViewModels;
+using WebMVC.Services;
+using WebMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Polly.CircuitBreaker;
 
-namespace WebMvc.ViewComponents
+namespace WebMVC.ViewComponents
 {
     public class Cart : ViewComponent
     {
