@@ -44,7 +44,8 @@ namespace CartApi.Models
         }
         public async Task<Cart> UpdateCartAsync(Cart basket)
         {
-            var created = await _database.StringSetAsync(basket.BuyerID, JsonConvert.SerializeObject(basket));
+            var created = await _database.StringSetAsync(basket.BuyerID, 
+                JsonConvert.SerializeObject(basket));
 
             if (!created)
             {
