@@ -31,12 +31,9 @@ services:
       dockerfile: Dockerfile
     image: events/cartapi
     environment:
-<<<<<<< HEAD
-      IdentityUrl: http://10.0.0.44:6750
-=======
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.0.14:6750
->>>>>>> origin/master
+      IdentityUrl: http://10.0.0.44:6750
+
       ConnectionString: basket.data
     ports:
       - "6900:80"
