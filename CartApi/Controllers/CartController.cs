@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using CartApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace CartApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CartController : ControllerBase
     {
         private readonly ICartRepository _repository;
@@ -29,7 +31,7 @@ namespace CartApi.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post(Cart value)
+        public async Task<IActionResult> Post([FromBody]Cart value)
         {
             var basket = await _repository.UpdateCartAsync(value);
             return Ok(basket);

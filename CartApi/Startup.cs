@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IdentityModel.Tokens.Jwt;
 
 
 namespace CartApi
@@ -59,7 +60,7 @@ namespace CartApi
                     {
                         Implicit = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri($"{Configuration["IdentityUrl"]}/connect/authroize"),
+                            AuthorizationUrl = new Uri($"{Configuration["IdentityUrl"]}/connect/authorize"),
                             TokenUrl = new Uri($"{Configuration["IdentityUrl"]}/connect/token"),
                             Scopes = new Dictionary<string, string>
                         {
@@ -76,6 +77,7 @@ namespace CartApi
 
         private void ConfigureAuthService(IServiceCollection services)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             var identityUrl = Configuration["IdentityUrl"];
             services.AddAuthentication(options =>
             {
@@ -101,7 +103,7 @@ namespace CartApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
