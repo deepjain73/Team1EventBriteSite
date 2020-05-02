@@ -32,7 +32,7 @@ services:
     image: events/cartapi
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.86.42:6750
+      IdentityUrl: http://192.168.0.14:6750
       ConnectionString: basket.data
     ports:
       - "6900:80"
@@ -43,7 +43,34 @@ services:
     depends_on:
       - basket.data
       - tokenserver
-      
+
+  order:
+    build:
+      context: .\OrderApi
+      dockerfile: Dockerfile
+    image: events/orderapi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.0.14:6750
+      DatabaseServer: mssqlserver
+      DatabaseName: OrderDb
+      DatabaseUser: sa
+      DatabasePassword: ProductApi(!)
+    ports:
+      - "7200:80"
+    container_name: eventorderapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - mssqlserver
+      - tokenserver
+
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
     environment: 
@@ -87,9 +114,10 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
-      IdentityUrl: http://192.168.86.42:6750
+      IdentityUrl: http://192.168.0.14:6750
       CallBackUrl: http://localhost:5300
       CartUrl: http://cart
+      OrderUrl: http://order
     ports:
       - "5300:80"
     networks:
@@ -98,6 +126,7 @@ services:
       - catalog
       - cart
       - tokenserver
+      - order
 
   basket.data:
     image: redis
