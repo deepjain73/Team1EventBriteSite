@@ -29,15 +29,12 @@ Pooja</br>
 Richa</br>
 Saranya</br>
 
-# Video links:
-Assignment 3a video link:</br>
+# Assignment 3a Video link:
 https://www.youtube.com/watch?v=tVFVrGEKxpw&feature=youtu.be
 
 # Assignment 3b video link:
-# Update
-Please note that the event count on page 1 and page 2 were corrected after making the video. </br>
 https://www.youtube.com/watch?v=P09spe2-3k4&feature=youtu.be </br>
-Here are the screenshot after making changes in the code.
+
 
 
 
