@@ -16,8 +16,7 @@ Written in ASP.NET Core to render event picture and other information like event
 MVC based design pattern, connects the front end to the backend Microservices.
 ### 3. TokenServiceApi:</br>
 Service that identify the user by providing authentication token, who wish to access the cart,add items to the cart or checkout. 
-### 4. CartApi:</br>
- Microservice that allow user to add items to the cart or update the existing cart.
+
 
 
 # Contributors
