@@ -26,10 +26,15 @@ services:
       - mssqlserver
 
   cart:
-    build: 
+    build:
       context: .\CartApi
       dockerfile: Dockerfile
     image: events/cartapi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://192.168.0.110:6750
@@ -38,11 +43,12 @@ services:
       - "6900:80"
     container_name: eventcartapi
     networks:
+      - backend
       - frontend
-      - backend 
     depends_on:
       - basket.data
       - tokenserver
+      
 
   order:
     build:
@@ -58,29 +64,31 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       IdentityUrl: http://192.168.0.110:6750
       DatabaseServer: mssqlserver
-      DatabaseName: OrderDb
+      DatabaseName: OrdersDb
       DatabaseUser: sa
       DatabasePassword: ProductApi(!)
     ports:
       - "7200:80"
     container_name: eventorderapi
     networks:
-      - frontend
       - backend
+      - frontend
     depends_on:
       - mssqlserver
       - tokenserver
+      
+
 
   mssqlserver:
     image: "microsoft/mssql-server-linux:latest"
-    environment: 
-       ACCEPT_EULA: Y
-       SA_PASSWORD: ProductApi(!)
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: ProductApi(!)
     ports:
-       - "1450:1433"
+      - "1450:1433"
     container_name: eventssqlserver
     networks:
-       - backend
+      - backend
 
   tokenserver:
     build:
@@ -105,8 +113,8 @@ services:
     depends_on:
       - mssqlserver
 
-  webmvc:
-    build:
+  WebMVC:
+    build: 
       context: .\WebMVC
       dockerfile: Dockerfile
     image: events/webmvc
@@ -118,6 +126,8 @@ services:
       CallBackUrl: http://localhost:5300
       CartUrl: http://cart
       OrderUrl: http://order
+      StripePublicKey: pk_test_7nZPrFh762JFGjOtYAw19ZIt00gMAgyOxb
+      StripePrivateKey: sk_test_9Ypz3RsMvvLNunf7jk9t3xb900nZJUEwjX
     ports:
       - "5300:80"
     networks:
@@ -125,13 +135,15 @@ services:
     depends_on:
       - catalog
       - cart
-      - tokenserver
       - order
+      - tokenserver
 
   basket.data:
     image: redis
     container_name: eventbasketdata
-    ports: 
+    ports:
       - "6200:6379"
     networks:
       - backend
+
+ 

@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//sing WebMVC.Models.OrderModels;
+using WebMVC.Models.OrderModels;
+
 
 namespace WebMVC.Services
 {
@@ -14,7 +15,7 @@ namespace WebMVC.Services
         Task AddItemToCart(ApplicationUser user, CartItem product);
         Task<Cart> UpdateCart(Cart Cart);
         Task<Cart> SetQuantities(ApplicationUser user, Dictionary<string, int> quantities);
-        //Order MapCartToOrder(Cart Cart);
+        Order MapCartToOrder(Cart Cart);
         Task ClearCart(ApplicationUser user);
 
     }
