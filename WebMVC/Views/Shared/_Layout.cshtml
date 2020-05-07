@@ -2,6 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebMVC</title>
 
@@ -23,11 +28,11 @@
 
     </environment>
     @*<environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>*@
+            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>*@
 </head>
 <body>
     <header class="navbar navbar-light navbar-static-top">
@@ -60,15 +65,24 @@
         <footer class="esh-app-footer">
             <div class="container">
                 <article class="row">
-
+                    
                     <section class="col-sm-4">
-                        <img class="esh-app-footer-brand" src="~/images/Events_img2.jpg"  />
+                        <img class="esh-app-footer-brand" src="~/images/Events_img2.jpg" />
                     </section>
 
                     <section class="col-sm-6">
-                        <div class="esh-app-footer-text"> eventsonContainers.All rights Reserved</div>
+                        @*<div class="esh-app-footer-text">*@
+                            <h1>Welcome To Events!</h1>
+                            <p>
+                                Events is a global platform for live experiences that allows anyone to create, share,
+                                find and attend events that fuel their passions and enrich their lives.
+                            </p>
+                            <h8>
+                                Copyright 2020. All rights Reserved.
+                            </h8> 
+                        @*</div>*@
                     </section>
-
+                     
                 </article>
             </div>
         </footer>
