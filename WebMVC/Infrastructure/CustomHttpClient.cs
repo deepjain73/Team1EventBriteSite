@@ -11,7 +11,7 @@ namespace WebMVC.Infrastructure
 {
     public class CustomHttpClient : IHttpClient
     {
-        public readonly HttpClient _client;
+        private readonly HttpClient _client;
         public CustomHttpClient()
         {
             _client = new HttpClient();
