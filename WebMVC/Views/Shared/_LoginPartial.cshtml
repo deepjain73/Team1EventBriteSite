@@ -4,6 +4,8 @@
 
 @inject IIdentityService<ApplicationUser> UserManager
 
+
+
 @if (User.FindFirst(x => x.Type == "preferred_username") != null)
 {
 

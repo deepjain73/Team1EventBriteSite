@@ -10,8 +10,7 @@ using WebMVC.Services;
 using WebMVC.Models;
 using WebMVC.Models.CartModels;
 using Polly.CircuitBreaker;
-using WebMVC.Services;
-using WebMVC.Models;
+
 
 namespace WebMVC.Controllers
 {
@@ -86,7 +85,7 @@ namespace WebMVC.Controllers
                 HandleBrokenCircuitException();
             }
 
-            return RedirectToAction("Index", "Catalog");
+            return RedirectToAction("Index", "EventCatalog");
 
         }
 
