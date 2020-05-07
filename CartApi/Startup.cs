@@ -85,7 +85,7 @@ namespace CartApi
                             h.Username("guest");
                             h.Password("guest");
                         });
-                        rmq.ReceiveEndpoint("JewelscartApr20", e =>
+                        rmq.ReceiveEndpoint("EventscartApr20", e =>
                         {
                             e.ConfigureConsumer<OrderCompletedEventConsumer>(provider);
 
@@ -102,6 +102,7 @@ namespace CartApi
 
         private void ConfigureAuthService(IServiceCollection services)
         {
+            // prevent from mapping "sub" claim to nameidentifier.
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             var identityUrl = Configuration["IdentityUrl"];
             services.AddAuthentication(options =>

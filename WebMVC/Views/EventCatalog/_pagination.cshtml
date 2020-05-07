@@ -14,7 +14,7 @@
                 </a>
 
                 <span class="esh-pager-item">
-                    @if (Model.TotalItems > 10)
+                    @if (Model.TotalItems > 12)
                     {
                         if (Model.ActualPage == 0)
                         {
@@ -24,7 +24,7 @@
                         {
 
                             long p = Model.TotalItems - Model.ItemsPerPage;
-                            if (p < 10)
+                            if (p < 12)
                             {
                                 <p1>Showing @p of @Model.TotalItems products -Page @(Model.ActualPage + 1) - @Model.TotalPages </p1>
 

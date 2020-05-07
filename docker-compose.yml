@@ -126,8 +126,8 @@ services:
       CallBackUrl: http://localhost:5300
       CartUrl: http://cart
       OrderUrl: http://order
-      StripePublicKey: pk_test_Cg1jaJ7R0IHrULsTgEF5bg1K009dKmW9lr
-      StripePrivateKey: sk_test_vUM24hzSqvV1J01AL9VLTO7D00WRdQ341m
+      StripePublicKey: pk_test_a5IYCJPiMMiHXZJfD3JHqCoa00QIKduptO
+      StripePrivateKey: sk_test_p45y1ikAP1GYjBiFsiGbCnx700rEOF4m7k
     ports:
       - "5300:80"
     networks:
@@ -154,8 +154,8 @@ services:
       - "15572:15672"
       - "5572:5672"
       - "5571:5671"
-    #volumes:
-      #- ~/rabbitmq:/var/lib/rabbitmq/mnesia   
+    volumes:
+      - ~/rabbitmq:/var/lib/rabbitmq/mnesia   
     networks:
       - backend 
 
