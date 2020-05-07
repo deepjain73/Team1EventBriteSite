@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OrderApi.Data;
-//using Common.Messaging;
+using Common.Messaging;
 using OrderApi.Models;
 
 namespace OrderApi.Controllers
@@ -25,9 +25,9 @@ namespace OrderApi.Controllers
 
         private readonly IConfiguration _config;
 
-       // private readonly ILogger<OrdersController> _logger;
-        //private IPublishEndpoint _bus;
-        public OrdersController(OrdersContext ordersContext, IConfiguration config)/*ILogger<OrdersController> logger, IPublishEndpoint bus*/
+        private readonly ILogger<OrdersController> _logger;
+        private IPublishEndpoint _bus;
+        public OrdersController(OrdersContext ordersContext, IConfiguration config,ILogger<OrdersController> logger, IPublishEndpoint bus)
 
         {
             _config = config;
@@ -35,8 +35,8 @@ namespace OrderApi.Controllers
 
             ordersContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
-           // _bus = bus;
-            //_logger = logger;
+           _bus = bus;
+           _logger = logger;
         }
 
         // POST api/Order/new
@@ -49,27 +49,27 @@ namespace OrderApi.Controllers
             order.OrderStatus = OrderStatus.Preparing;
             order.OrderDate = DateTime.UtcNow;
 
-            //_logger.LogInformation(" testing ");
+            _logger.LogInformation(" testing ");
 
-            //_logger.LogInformation(" In Create Order");
-            //_logger.LogInformation(" Order" + order.UserName);
+            _logger.LogInformation(" In Create Order");
+            _logger.LogInformation(" Order" + order.UserName);
 
 
             _ordersContext.Orders.Add(order);
             _ordersContext.OrderItems.AddRange(order.OrderItems);
 
-            //_logger.LogInformation(" Order added to context");
-            //_logger.LogInformation(" Saving........");
+            _logger.LogInformation(" Order added to context");
+            _logger.LogInformation(" Saving........");
             try
             {
                 await _ordersContext.SaveChangesAsync();
-                //_logger.LogWarning("BuyerId is: " + order.BuyerId);
-                //_bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
+                _logger.LogWarning("BuyerId is: " + order.BuyerId);
+                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 return Ok(new { order.OrderId });
             }
             catch (DbUpdateException ex)
             {
-                //_logger.LogError("An error occored during Order saving .." + ex.Message);
+                _logger.LogError("An error occored during Order saving .." + ex.Message);
                 return BadRequest();
             }
 

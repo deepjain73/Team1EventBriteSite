@@ -23,12 +23,12 @@ namespace WebMVC.Controllers
         private readonly ICartService _cartSvc;
         private readonly IOrderService _orderSvc;
         private readonly IIdentityService<ApplicationUser> _identitySvc;
-        //private readonly ILogger<OrderController> _logger;
+        private readonly ILogger<OrderController> _logger;
         private readonly IConfiguration _config;
 
 
         public OrderController(IConfiguration config,
-            //ILogger<OrderController> logger,
+            ILogger<OrderController> logger,
             IOrderService orderSvc,
             ICartService cartSvc,
             IIdentityService<ApplicationUser> identitySvc)
@@ -36,7 +36,7 @@ namespace WebMVC.Controllers
             _identitySvc = identitySvc;
             _orderSvc = orderSvc;
             _cartSvc = cartSvc;
-            //_logger = logger;
+            _logger = logger;
             _config = config;
         }
 
@@ -88,11 +88,11 @@ namespace WebMVC.Controllers
                 try
                 {
                     stripeCharge = chargeService.Create(chargeOptions, options);
-                    //_logger.LogDebug("Stripe charge object creation" + stripeCharge.StripeResponse.ToString());
+                    _logger.LogDebug("Stripe charge object creation" + stripeCharge.StripeResponse.ToString());
                 }
                 catch (StripeException stripeException)
                 {
-                   // _logger.LogDebug("Stripe exception " + stripeException.Message);
+                    _logger.LogDebug("Stripe exception " + stripeException.Message);
                     ModelState.AddModelError(string.Empty, stripeException.Message);
                     return View(frmOrder);
                 }
@@ -134,7 +134,7 @@ namespace WebMVC.Controllers
         public IActionResult Complete(int id, string userName)
         {
 
-           // _logger.LogInformation("User {userName} completed checkout on order {orderId}.", userName, id);
+            _logger.LogInformation("User {userName} completed checkout on order {orderId}.", userName, id);
             return View(id);
 
         }
@@ -159,13 +159,13 @@ namespace WebMVC.Controllers
 
 
 
-        //public async Task<IActionResult> Orders()
-        //{
+        public async Task<IActionResult> Orders()
+        {
 
 
-        //    var vm = await _orderSvc.GetOrders();
-        //    return View(vm);
-        //}
+            var vm = await _orderSvc.GetOrders();
+            return View(vm);
+        }
 
 
         private decimal GetTotal(List<Models.OrderModels.OrderItem> orderItems)
