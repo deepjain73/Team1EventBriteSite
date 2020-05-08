@@ -16,8 +16,9 @@ Written in ASP.NET Core to render event picture and other information like event
 MVC based design pattern, connects the front end to the backend Microservices.
 ### 3. TokenServiceApi:</br>
 Service that identify the user by providing authentication token, who wish to access the cart,add items to the cart or checkout. 
-### 4. CartApi:</br>
- Microservice that allow user to add items to the cart or update the existing cart.
+### 4. Swagger:</br>
+Implemeted Swagger to build REST API Documentation.
+
 
 
 # Contributors
@@ -28,10 +29,22 @@ Pooja</br>
 Richa</br>
 Saranya</br>
 
-# Video link:
+# Assignment 3a Video link:
 https://www.youtube.com/watch?v=tVFVrGEKxpw&feature=youtu.be
 
+# Assignment 3b video link:
+Update</br>
+https://www.youtube.com/watch?v=P09spe2-3k4&feature=youtu.be </br>
 
+Please note that we have corrected the event count on Page on our website after the video was made.</br>
+So below are the screenshots of the website showing correct count of events.</br>
+
+  Page 1
+![Page1](Page1.png)  
+
+
+  Page 2 
+![Page2](Page2.png)
 
 
 

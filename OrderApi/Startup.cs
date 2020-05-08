@@ -102,9 +102,8 @@ namespace OrderApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseSwagger()
                .UseSwaggerUI(e =>
