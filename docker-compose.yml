@@ -37,10 +37,7 @@ services:
         max-file: "10"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-
-
       IdentityUrl: http://10.0.0.44:6750
-
       ConnectionString: basket.data
     ports:
       - "6900:80"
@@ -125,19 +122,13 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
-
-
-     
-
-     
-
-
       IdentityUrl: http://10.0.0.44:6750
       CallBackUrl: http://localhost:5300
       CartUrl: http://cart
       OrderUrl: http://order
       StripePublicKey: pk_test_xC35zA5IEaLKsSMGOS8CkH3u00pWpsZHg3
       StripePrivateKey: sk_test_8jmxhP6xdpGmO3nmyPwwJoyz00kJN27KhB
+
     ports:
       - "5300:80"
     networks:
@@ -155,5 +146,18 @@ services:
       - "6200:6379"
     networks:
       - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: eventrabbitmq
+    hostname: myrabbitmq
+    ports:
+      - "15572:15672"
+      - "5572:5672"
+      - "5571:5671"
+    volumes:
+      - ~/rabbitmq:/var/lib/rabbitmq/mnesia   
+    networks:
+      - backend 
 
  
