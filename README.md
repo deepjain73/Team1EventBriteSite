@@ -18,7 +18,12 @@ MVC based design pattern, connects the front end to the backend Microservices.
 Service that identify the user by providing authentication token, who wish to access the cart,add items to the cart or checkout. 
 ### 4. Swagger:</br>
 Implemeted Swagger to build REST API Documentation.
-
+### 5.CartApi:</br>
+Service that allow user to add item to the cart or update the existing item in the cart.
+###6. OrderApi:</br>
+This service is being called when user make a payment and place their order.Integrating it with Stripe to process the payment.
+###7. Messaging:</br>
+Rabbitmq message bus to communicate messages between Order Api and Cart Api.
 
 
 # Contributors
