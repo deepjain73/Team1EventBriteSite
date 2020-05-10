@@ -34,24 +34,14 @@ Pooja</br>
 Richa</br>
 Saranya</br>
 
-# Assignment 3a Video link:
-https://www.youtube.com/watch?v=tVFVrGEKxpw&feature=youtu.be
+# Assignment 3c Video link:
+https://www.youtube.com/watch?v=kZKZkwiMFns&feature=youtu.be
 
 # Assignment 3b video link:
-Update</br>
 https://www.youtube.com/watch?v=P09spe2-3k4&feature=youtu.be </br>
 
-Please note that we have corrected the event count on Page on our website after the video was made.</br>
-So below are the screenshots of the website showing correct count of events.</br>
-
-  Page 1
-![Page1](Page1.png)  
-
-
-  Page 2 
-![Page2](Page2.png)
-
-
+# Assignment 3a Video link:
+https://www.youtube.com/watch?v=tVFVrGEKxpw&feature=youtu.be
 
 
 
